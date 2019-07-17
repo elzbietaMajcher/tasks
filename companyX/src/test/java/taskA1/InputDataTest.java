@@ -34,16 +34,15 @@ public class InputDataTest {
         expected.equals(actual);
     }
 
-    @Ignore
     @Test
     public void show() throws IOException {
         List<String> onlyValid = Task1.readFile(path, charset);
         List<InputData> list = InputData.createListOfInputData(onlyValid);
         InputData actual = list.get(0);
         InputData expected = new InputData(new Date(2017/10/10),"Demand (b.c)", "Generation(1,234.56)","Motores diesel",
-                "Turbina de gas", "Fuel + Gas", "Ciclo combinado (3)", "GeneraciÃ³n auxiliar (4)");
+                "Turbina de gas", "Fuel + Gas", "Ciclo combinado (3)", "Generación auxiliar (4)");
 
-        assert actual == expected;
+        expected.equals(actual);
         System.out.println(actual);
     }
 
