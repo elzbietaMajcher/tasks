@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Task1 {
 
@@ -23,9 +24,29 @@ public class Task1 {
             String words[] = line.split(" ");
             if (words.length > 4 && words[4].equals("<tr")) {
                 lines.add(line);
-                System.out.println(line.toString());
+//                System.out.println(line.toString());
             }
         }
         return lines;
+    }
+
+    /**
+     * @param input
+     * @return
+     */
+    public static List<InputData> getOnlyValid(List<String> input) {
+        return input
+                .stream()
+                .map(InputData::fromTextToParsed)
+                .filter(i -> i != null)
+                .collect(Collectors.toList());
+    }
+
+    public static void printFormated(List<InputData> result) {
+
+        result
+                .stream()
+                .map(InputData::toStringFormated)
+                .forEach(System.out::println);
     }
 }

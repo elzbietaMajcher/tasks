@@ -43,6 +43,17 @@ public class InputData {
                 '}';
     }
 
+    public static String toStringFormated(InputData input) {
+        return  input.date +
+                " " + input.demand + '\'' +
+                " " + input.generation + '\'' +
+                " " + input.engine + '\'' +
+                " " + input.turbina + '\'' +
+                " " + input.fuel + '\'' +
+                " " + input.ciclo + '\'' +
+                " " + input.generacion;
+    }
+
     /**
      * @param input is a line from the text from the html
      * @return an object with parsed data or null
