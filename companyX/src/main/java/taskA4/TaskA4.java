@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,8 +29,6 @@ public class TaskA4 {
         ) {
             System.out.println(r);
         }
-
-
         printInfo(list);
 
     }
@@ -101,12 +100,13 @@ public class TaskA4 {
         double average1 = calculateAverage(sum1, list.size());
         double average2 = calculateAverage(sum2, list.size());
 
+        DecimalFormat df = new DecimalFormat("#.##");
 
         String info1 = "Net imbalances through the ALIZES service: " + start_date + " - " + end_date +
-                "SUM: " + sum1 + " AVG: " + average1;
+                " SUM: " + df.format(sum1) + " AVG: " + df.format(average1);
 
         String info2 = "Imbalances cashed out through sells at marginal price (kWh 25°C): " + start_date + " - " + end_date +
-                "SUM: " + sum2 + " AVG: " + average2;
+                " SUM: " + df.format(sum2) + " AVG: " + df.format(average2);
 
         System.out.println(info1);
         System.out.println(info2);

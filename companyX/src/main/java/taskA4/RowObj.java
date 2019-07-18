@@ -18,7 +18,7 @@ public class RowObj {
 
     @Override
     public String toString() {
-        return "RowObjUnfiltered{" +
+        return "RowObj{" +
                 "date='" + date + '\'' +
                 ", col2='" + col2 + '\'' +
                 ", col5='" + col5;
@@ -40,18 +40,18 @@ public class RowObj {
     }
 
     public static RowObj convert(RowObjUnfiltered rowObjUnfiltered) {
-        RowObj result = new RowObj("", 0, 0);
-        try {
+        //RowObj result = new RowObj("", 0, 0);
+        //try {
             String d = rowObjUnfiltered.date;
 
             double r2 = Double.valueOf(rowObjUnfiltered.col2);
             double r5 = Double.valueOf(rowObjUnfiltered.col5);
-            result = new RowObj(d, r2, r5);
+            RowObj result = new RowObj(d, r2, r5);
 
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
         return result;
     }
 
@@ -60,8 +60,6 @@ public class RowObj {
         for (RowObjUnfiltered r : rowObjUnfilteredList) {
             rowObjList.add(convert(r));
         }
-
-
         return rowObjList;
     }
 }
