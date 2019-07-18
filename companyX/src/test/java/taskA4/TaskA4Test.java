@@ -23,7 +23,6 @@ public class TaskA4Test {
         double result = TaskA4.calculateRow2(list);
 
         Assert.assertEquals(expected, result, 0);
-
     }
 
     @Test
@@ -45,18 +44,17 @@ public class TaskA4Test {
 
     @Test
     public void printResult () throws ParseException, InvalidFormatException, IOException {
-        List<RowObjUnfiltered> unfiltredList = TaskA4.create(); // data are not the same
-        for (RowObjUnfiltered r : unfiltredList
-        ) {
-            System.out.println(r);
-        }
-
+        List<RowObjUnfiltered> unfiltredList = TaskA4.create();
         List<RowObj> list = RowObj.createList(unfiltredList);
-        for (RowObj r : list
-        ) {
-            System.out.println(r);
-        }
-        TaskA4.printInfo(list);
+//        for (RowObjUnfiltered r : unfiltredList
+//        ) {
+//            System.out.println(r);
+//        }
 
+//        for (RowObj r : list
+//        ) {
+//            System.out.println(r);
+//        }
+        TaskA4.printInfo(list);
+        }
     }
-}

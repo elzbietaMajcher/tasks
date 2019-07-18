@@ -1,13 +1,10 @@
 package taskA4;
 
 public class RowObjUnfiltered {
-    String  date;
-    String col1;
+    String date;
     String col2;
-    String col3;
-    String col4;
     String col5;
-    String col6;
+
 
     public RowObjUnfiltered(String date, String col2, String col5) {
         this.date = date;

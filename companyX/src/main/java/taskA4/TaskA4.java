@@ -42,7 +42,7 @@ public class TaskA4 {
         List<RowObjUnfiltered> rowObjUnfilteredList = new ArrayList<>();
         for (Row row : sheet) {
 
-            if (row.getRowNum() < 5)
+            if (row.getRowNum() < 4)
                 continue;
 
 
