@@ -43,15 +43,15 @@ public class InputData {
                 '}';
     }
 
-    public static String toStringFormated(InputData input) {
-        return  input.date +
-                " " + input.demand + '\'' +
-                " " + input.generation + '\'' +
-                " " + input.engine + '\'' +
-                " " + input.turbina + '\'' +
-                " " + input.fuel + '\'' +
-                " " + input.ciclo + '\'' +
-                " " + input.generacion;
+    public static String toStringFormatted(InputData input) {
+        return parseDataToResultFormat(input.date) +
+                " " + input.demand.toUpperCase() + '\'' +
+                " " + input.generation.toUpperCase() + '\'' +
+                " " + input.engine.toUpperCase() + '\'' +
+                " " + input.turbina.toUpperCase() + '\'' +
+                " " + input.fuel.toUpperCase() + '\'' +
+                " " + input.ciclo.toUpperCase() + '\'' +
+                " " + input.generacion.toUpperCase();
     }
 
     /**
@@ -73,6 +73,12 @@ public class InputData {
         return inputData;
     }
 
+    public static String parseDataToResultFormat(Date date) {
+        SimpleDateFormat resultFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = resultFormatter.format(date);
+        return formattedDate;
+    }
+
     /**
      * parse txt to convert like
      * 2017/10/10</th>
@@ -83,45 +89,36 @@ public class InputData {
      * @return
      * @throws ParseException
      */
-    private static Date parseDateText(String s) {
+    public static Date parseDateText(String s) {
 
         Date date = null;
+
         try {
             try { //2017/10/10
                 if (date == null)
                     date = new SimpleDateFormat("yyyy/MM/dd").parse(clean4(s));
             } finally {
-            }
-
-            try { // 10102017T0000
-                if (date == null)
-                    date = new SimpleDateFormat("ddMMyyyy7T0000").parse(clean4(s));
-            } finally {
-            }
-
-            try { //10-10-2017
-                if (date == null)
-                    date = new SimpleDateFormat("dd-MM-yyyy").parse(clean4(s));
-            } finally {
+                try { // 10102017T0000
+                    if (date == null)
+                        date = new SimpleDateFormat("ddMMyyyy'T'HHmm").parse(clean4(s));
+                } finally {
+                    try { //10-10-2017
+                        if (date == null)
+                            date = new SimpleDateFormat("dd-MM-yyyy").parse(clean4(s));
+                    } finally {
+                    }
+                }
             }
         } catch (Exception ec) {
         }
         return date;
     }
 
-
-    //<tr class="primera odd"><th class="titulo ini" scope="row">2017/10/10</th>
-    // <th class="titulo" scope="col">Demand (b.c)</th>
-    // <th class="titulo" scope="col">Generation(1,234.56)</th>
-    // <th class="titulo" scope="col">Motores diesel</th>
-    // <th class="titulo" scope="col">Turbina de gas</th><th
-
     public static String clean4(String s) {
         return s.replace("class=\"titulo ini\" scope=\"row\">", "")
                 .replace("</th>", "")
                 .trim();
     }
-// TODO rename method names
 
     private static String clean3(String s) {
         return s.replace("class=\"titulo\" scope=\"col\">", "")
@@ -145,9 +142,9 @@ public class InputData {
         return Arrays.asList(input.split("<th"));
     }
 
-    public static List<InputData> createListOfInputData(List<String> onlyValid){
+    public static List<InputData> createListOfInputData(List<String> onlyValid) {
         List<InputData> inputDataList = new ArrayList<>();
-        for (String o : onlyValid ) {
+        for (String o : onlyValid) {
             InputData object = fromTextToParsed(o);
             inputDataList.add(object);
         }

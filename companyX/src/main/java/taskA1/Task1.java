@@ -30,10 +30,6 @@ public class Task1 {
         return lines;
     }
 
-    /**
-     * @param input
-     * @return
-     */
     public static List<InputData> getOnlyValid(List<String> input) {
         return input
                 .stream()
@@ -42,11 +38,10 @@ public class Task1 {
                 .collect(Collectors.toList());
     }
 
-    public static void printFormated(List<InputData> result) {
-
+    public static void printFormatted(List<InputData> result) {
         result
                 .stream()
-                .map(InputData::toStringFormated)
+                .map(InputData::toStringFormatted)
                 .forEach(System.out::println);
     }
 }
